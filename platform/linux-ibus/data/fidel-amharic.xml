@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component>
+    <name>org.freedesktop.IBus.FidelAmharic</name>
+    <description>Fidel Amharic Input Method</description>
+    <exec>/home/abdu/fidel/target/release/linux-ibus</exec>
+    <version>0.1.0</version>
+    <author>Fidel Amharic Contributors</author>
+    <license>MIT</license>
+    <homepage>https://github.com/fidel-amharic/fidel</homepage>
+    <textdomain>fidel-amharic</textdomain>
+    <engines>
+        <engine>
+            <name>fidel-amharic</name>
+            <language>am</language>
+            <license>MIT</license>
+            <author>Fidel Amharic Contributors</author>
+            <icon>ibus-engine</icon>
+            <layout>us</layout>
+            <longname>Fidel Amharic (Power Geez)</longname>
+            <description>Native Unicode Ethiopic Amharic phonetic input method</description>
+            <rank>99</rank>
+            <symbol>አ</symbol>
+        </engine>
+    </engines>
+</component>

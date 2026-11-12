@@ -1,0 +1,2587 @@
+[metadata]
+id = "power_geez_phonetic_unicode"
+display_name = "Power Geez Phonetic-compatible (Unicode)"
+language = "am"
+script = "Ethi"
+version = "1.2.6"
+license = "MIT"
+author = "SIL Ethiopia (adapted for Fidel Amharic)"
+description = "Phonetic keyboard sequences compatible with the Power Geez (Phonetic) layout, outputting standard Unicode Ethiopic script."
+
+[options]
+case_sensitive = true
+terminators = ["'"]
+auto_commit_timeout_ms = 0
+
+[[rules]]
+keys = "u"
+output = "ኡ"
+order = 2
+
+[[rules]]
+keys = "i"
+output = "ኢ"
+order = 3
+
+[[rules]]
+keys = "a"
+output = "ኣ"
+order = 4
+
+[[rules]]
+keys = "e"
+output = "እ"
+order = 6
+
+[[rules]]
+keys = "o"
+output = "ኦ"
+order = 7
+
+[[rules]]
+keys = "W"
+output = "ኧ"
+order = 1
+
+[[rules]]
+keys = "U"
+output = "ዑ"
+order = 2
+
+[[rules]]
+keys = "I"
+output = "ዒ"
+order = 3
+
+[[rules]]
+keys = "A"
+output = "ዓ"
+order = 4
+
+[[rules]]
+keys = "E"
+output = "ዕ"
+order = 6
+
+[[rules]]
+keys = "O"
+output = "ዖ"
+order = 7
+
+[[rules]]
+keys = "h"
+output = "ሀ"
+order = 1
+
+[[rules]]
+keys = "hu"
+output = "ሁ"
+order = 2
+
+[[rules]]
+keys = "hi"
+output = "ሂ"
+order = 3
+
+[[rules]]
+keys = "ha"
+output = "ሃ"
+order = 4
+
+[[rules]]
+keys = "hy"
+output = "ሄ"
+order = 5
+
+[[rules]]
+keys = "he"
+output = "ህ"
+order = 6
+
+[[rules]]
+keys = "ho"
+output = "ሆ"
+order = 7
+
+[[rules]]
+keys = "hO"
+output = "ሇ"
+order = 8
+
+[[rules]]
+keys = "l"
+output = "ለ"
+order = 1
+
+[[rules]]
+keys = "lu"
+output = "ሉ"
+order = 2
+
+[[rules]]
+keys = "li"
+output = "ሊ"
+order = 3
+
+[[rules]]
+keys = "la"
+output = "ላ"
+order = 4
+
+[[rules]]
+keys = "ly"
+output = "ሌ"
+order = 5
+
+[[rules]]
+keys = "le"
+output = "ል"
+order = 6
+
+[[rules]]
+keys = "lo"
+output = "ሎ"
+order = 7
+
+[[rules]]
+keys = "lO"
+output = "ⶀ"
+order = 8
+
+[[rules]]
+keys = "lW"
+output = "ሏ"
+order = 4
+
+[[rules]]
+keys = "H"
+output = "ሐ"
+order = 1
+
+[[rules]]
+keys = "Hu"
+output = "ሑ"
+order = 2
+
+[[rules]]
+keys = "Hi"
+output = "ሒ"
+order = 3
+
+[[rules]]
+keys = "Ha"
+output = "ሓ"
+order = 4
+
+[[rules]]
+keys = "Hy"
+output = "ሔ"
+order = 5
+
+[[rules]]
+keys = "He"
+output = "ሕ"
+order = 6
+
+[[rules]]
+keys = "Ho"
+output = "ሖ"
+order = 7
+
+[[rules]]
+keys = "HW"
+output = "ሗ"
+order = 4
+
+[[rules]]
+keys = "m"
+output = "መ"
+order = 1
+
+[[rules]]
+keys = "mu"
+output = "ሙ"
+order = 2
+
+[[rules]]
+keys = "mi"
+output = "ሚ"
+order = 3
+
+[[rules]]
+keys = "ma"
+output = "ማ"
+order = 4
+
+[[rules]]
+keys = "my"
+output = "ሜ"
+order = 5
+
+[[rules]]
+keys = "me"
+output = "ም"
+order = 6
+
+[[rules]]
+keys = "mo"
+output = "ሞ"
+order = 7
+
+[[rules]]
+keys = "mO"
+output = "ⶁ"
+order = 8
+
+[[rules]]
+keys = "mW"
+output = "ሟ"
+order = 4
+
+[[rules]]
+keys = "J"
+output = "ሠ"
+order = 1
+
+[[rules]]
+keys = "Ju"
+output = "ሡ"
+order = 2
+
+[[rules]]
+keys = "Ji"
+output = "ሢ"
+order = 3
+
+[[rules]]
+keys = "Ja"
+output = "ሣ"
+order = 4
+
+[[rules]]
+keys = "Jy"
+output = "ሤ"
+order = 5
+
+[[rules]]
+keys = "Je"
+output = "ሥ"
+order = 6
+
+[[rules]]
+keys = "Jo"
+output = "ሦ"
+order = 7
+
+[[rules]]
+keys = "JW"
+output = "ሧ"
+order = 4
+
+[[rules]]
+keys = "r"
+output = "ረ"
+order = 1
+
+[[rules]]
+keys = "ru"
+output = "ሩ"
+order = 2
+
+[[rules]]
+keys = "ri"
+output = "ሪ"
+order = 3
+
+[[rules]]
+keys = "ra"
+output = "ራ"
+order = 4
+
+[[rules]]
+keys = "ry"
+output = "ሬ"
+order = 5
+
+[[rules]]
+keys = "re"
+output = "ር"
+order = 6
+
+[[rules]]
+keys = "ro"
+output = "ሮ"
+order = 7
+
+[[rules]]
+keys = "rO"
+output = "ⶂ"
+order = 8
+
+[[rules]]
+keys = "rW"
+output = "ሯ"
+order = 4
+
+[[rules]]
+keys = "s"
+output = "ሰ"
+order = 1
+
+[[rules]]
+keys = "su"
+output = "ሱ"
+order = 2
+
+[[rules]]
+keys = "si"
+output = "ሲ"
+order = 3
+
+[[rules]]
+keys = "sa"
+output = "ሳ"
+order = 4
+
+[[rules]]
+keys = "sy"
+output = "ሴ"
+order = 5
+
+[[rules]]
+keys = "se"
+output = "ስ"
+order = 6
+
+[[rules]]
+keys = "so"
+output = "ሶ"
+order = 7
+
+[[rules]]
+keys = "sO"
+output = "ⶃ"
+order = 8
+
+[[rules]]
+keys = "sW"
+output = "ሷ"
+order = 4
+
+[[rules]]
+keys = "S"
+output = "ሸ"
+order = 1
+
+[[rules]]
+keys = "Su"
+output = "ሹ"
+order = 2
+
+[[rules]]
+keys = "Si"
+output = "ሺ"
+order = 3
+
+[[rules]]
+keys = "Sa"
+output = "ሻ"
+order = 4
+
+[[rules]]
+keys = "Sy"
+output = "ሼ"
+order = 5
+
+[[rules]]
+keys = "Se"
+output = "ሽ"
+order = 6
+
+[[rules]]
+keys = "So"
+output = "ሾ"
+order = 7
+
+[[rules]]
+keys = "SO"
+output = "ⶄ"
+order = 8
+
+[[rules]]
+keys = "SW"
+output = "ሿ"
+order = 4
+
+[[rules]]
+keys = "q"
+output = "ቀ"
+order = 1
+
+[[rules]]
+keys = "qu"
+output = "ቁ"
+order = 2
+
+[[rules]]
+keys = "qi"
+output = "ቂ"
+order = 3
+
+[[rules]]
+keys = "qa"
+output = "ቃ"
+order = 4
+
+[[rules]]
+keys = "qy"
+output = "ቄ"
+order = 5
+
+[[rules]]
+keys = "qe"
+output = "ቅ"
+order = 6
+
+[[rules]]
+keys = "qo"
+output = "ቆ"
+order = 7
+
+[[rules]]
+keys = "qO"
+output = "ቇ"
+order = 8
+
+[[rules]]
+keys = "qW"
+output = "ቋ"
+order = 4
+
+[[rules]]
+keys = "Q"
+output = "ቐ"
+order = 1
+
+[[rules]]
+keys = "Qu"
+output = "ቑ"
+order = 2
+
+[[rules]]
+keys = "Qi"
+output = "ቒ"
+order = 3
+
+[[rules]]
+keys = "Qa"
+output = "ቓ"
+order = 4
+
+[[rules]]
+keys = "Qy"
+output = "ቔ"
+order = 5
+
+[[rules]]
+keys = "Qe"
+output = "ቕ"
+order = 6
+
+[[rules]]
+keys = "Qo"
+output = "ቖ"
+order = 7
+
+[[rules]]
+keys = "QW"
+output = "ቛ"
+order = 4
+
+[[rules]]
+keys = "b"
+output = "በ"
+order = 1
+
+[[rules]]
+keys = "bu"
+output = "ቡ"
+order = 2
+
+[[rules]]
+keys = "bi"
+output = "ቢ"
+order = 3
+
+[[rules]]
+keys = "ba"
+output = "ባ"
+order = 4
+
+[[rules]]
+keys = "by"
+output = "ቤ"
+order = 5
+
+[[rules]]
+keys = "be"
+output = "ብ"
+order = 6
+
+[[rules]]
+keys = "bo"
+output = "ቦ"
+order = 7
+
+[[rules]]
+keys = "bO"
+output = "ⶅ"
+order = 8
+
+[[rules]]
+keys = "bW"
+output = "ቧ"
+order = 4
+
+[[rules]]
+keys = "v"
+output = "ቨ"
+order = 1
+
+[[rules]]
+keys = "vu"
+output = "ቩ"
+order = 2
+
+[[rules]]
+keys = "vi"
+output = "ቪ"
+order = 3
+
+[[rules]]
+keys = "va"
+output = "ቫ"
+order = 4
+
+[[rules]]
+keys = "vy"
+output = "ቬ"
+order = 5
+
+[[rules]]
+keys = "ve"
+output = "ቭ"
+order = 6
+
+[[rules]]
+keys = "vo"
+output = "ቮ"
+order = 7
+
+[[rules]]
+keys = "vW"
+output = "ቯ"
+order = 4
+
+[[rules]]
+keys = "t"
+output = "ተ"
+order = 1
+
+[[rules]]
+keys = "tu"
+output = "ቱ"
+order = 2
+
+[[rules]]
+keys = "ti"
+output = "ቲ"
+order = 3
+
+[[rules]]
+keys = "ta"
+output = "ታ"
+order = 4
+
+[[rules]]
+keys = "ty"
+output = "ቴ"
+order = 5
+
+[[rules]]
+keys = "te"
+output = "ት"
+order = 6
+
+[[rules]]
+keys = "to"
+output = "ቶ"
+order = 7
+
+[[rules]]
+keys = "tO"
+output = "ⶆ"
+order = 8
+
+[[rules]]
+keys = "tW"
+output = "ቷ"
+order = 4
+
+[[rules]]
+keys = "c"
+output = "ቸ"
+order = 1
+
+[[rules]]
+keys = "cu"
+output = "ቹ"
+order = 2
+
+[[rules]]
+keys = "ci"
+output = "ቺ"
+order = 3
+
+[[rules]]
+keys = "ca"
+output = "ቻ"
+order = 4
+
+[[rules]]
+keys = "cy"
+output = "ቼ"
+order = 5
+
+[[rules]]
+keys = "ce"
+output = "ች"
+order = 6
+
+[[rules]]
+keys = "co"
+output = "ቾ"
+order = 7
+
+[[rules]]
+keys = "cO"
+output = "ⶇ"
+order = 8
+
+[[rules]]
+keys = "cW"
+output = "ቿ"
+order = 4
+
+[[rules]]
+keys = "L"
+output = "ኀ"
+order = 1
+
+[[rules]]
+keys = "Lu"
+output = "ኁ"
+order = 2
+
+[[rules]]
+keys = "Li"
+output = "ኂ"
+order = 3
+
+[[rules]]
+keys = "La"
+output = "ኃ"
+order = 4
+
+[[rules]]
+keys = "Ly"
+output = "ኄ"
+order = 5
+
+[[rules]]
+keys = "Le"
+output = "ኅ"
+order = 6
+
+[[rules]]
+keys = "Lo"
+output = "ኆ"
+order = 7
+
+[[rules]]
+keys = "LO"
+output = "ኇ"
+order = 8
+
+[[rules]]
+keys = "LW"
+output = "ኋ"
+order = 4
+
+[[rules]]
+keys = "n"
+output = "ነ"
+order = 1
+
+[[rules]]
+keys = "nu"
+output = "ኑ"
+order = 2
+
+[[rules]]
+keys = "ni"
+output = "ኒ"
+order = 3
+
+[[rules]]
+keys = "na"
+output = "ና"
+order = 4
+
+[[rules]]
+keys = "ny"
+output = "ኔ"
+order = 5
+
+[[rules]]
+keys = "ne"
+output = "ን"
+order = 6
+
+[[rules]]
+keys = "no"
+output = "ኖ"
+order = 7
+
+[[rules]]
+keys = "nO"
+output = "ⶈ"
+order = 8
+
+[[rules]]
+keys = "nW"
+output = "ኗ"
+order = 4
+
+[[rules]]
+keys = "N"
+output = "ኘ"
+order = 1
+
+[[rules]]
+keys = "Nu"
+output = "ኙ"
+order = 2
+
+[[rules]]
+keys = "Ni"
+output = "ኚ"
+order = 3
+
+[[rules]]
+keys = "Na"
+output = "ኛ"
+order = 4
+
+[[rules]]
+keys = "Ny"
+output = "ኜ"
+order = 5
+
+[[rules]]
+keys = "Ne"
+output = "ኝ"
+order = 6
+
+[[rules]]
+keys = "No"
+output = "ኞ"
+order = 7
+
+[[rules]]
+keys = "NO"
+output = "ⶉ"
+order = 8
+
+[[rules]]
+keys = "NW"
+output = "ኟ"
+order = 4
+
+[[rules]]
+keys = "x"
+output = "አ"
+order = 1
+
+[[rules]]
+keys = "xu"
+output = "ኡ"
+order = 2
+
+[[rules]]
+keys = "xi"
+output = "ኢ"
+order = 3
+
+[[rules]]
+keys = "xa"
+output = "ኣ"
+order = 4
+
+[[rules]]
+keys = "xy"
+output = "ኤ"
+order = 5
+
+[[rules]]
+keys = "xe"
+output = "እ"
+order = 6
+
+[[rules]]
+keys = "xo"
+output = "ኦ"
+order = 7
+
+[[rules]]
+keys = "xO"
+output = "ⶊ"
+order = 8
+
+[[rules]]
+keys = "xW"
+output = "ኧ"
+order = 4
+
+[[rules]]
+keys = "k"
+output = "ከ"
+order = 1
+
+[[rules]]
+keys = "ku"
+output = "ኩ"
+order = 2
+
+[[rules]]
+keys = "ki"
+output = "ኪ"
+order = 3
+
+[[rules]]
+keys = "ka"
+output = "ካ"
+order = 4
+
+[[rules]]
+keys = "ky"
+output = "ኬ"
+order = 5
+
+[[rules]]
+keys = "ke"
+output = "ክ"
+order = 6
+
+[[rules]]
+keys = "ko"
+output = "ኮ"
+order = 7
+
+[[rules]]
+keys = "kO"
+output = "ኯ"
+order = 8
+
+[[rules]]
+keys = "kW"
+output = "ኳ"
+order = 4
+
+[[rules]]
+keys = "K"
+output = "ኸ"
+order = 1
+
+[[rules]]
+keys = "Ku"
+output = "ኹ"
+order = 2
+
+[[rules]]
+keys = "Ki"
+output = "ኺ"
+order = 3
+
+[[rules]]
+keys = "Ka"
+output = "ኻ"
+order = 4
+
+[[rules]]
+keys = "Ky"
+output = "ኼ"
+order = 5
+
+[[rules]]
+keys = "Ke"
+output = "ኽ"
+order = 6
+
+[[rules]]
+keys = "Ko"
+output = "ኾ"
+order = 7
+
+[[rules]]
+keys = "KW"
+output = "ዃ"
+order = 4
+
+[[rules]]
+keys = "w"
+output = "ወ"
+order = 1
+
+[[rules]]
+keys = "wu"
+output = "ዉ"
+order = 2
+
+[[rules]]
+keys = "wi"
+output = "ዊ"
+order = 3
+
+[[rules]]
+keys = "wa"
+output = "ዋ"
+order = 4
+
+[[rules]]
+keys = "wy"
+output = "ዌ"
+order = 5
+
+[[rules]]
+keys = "we"
+output = "ው"
+order = 6
+
+[[rules]]
+keys = "wo"
+output = "ዎ"
+order = 7
+
+[[rules]]
+keys = "wO"
+output = "ዏ"
+order = 8
+
+[[rules]]
+keys = "X"
+output = "ዐ"
+order = 1
+
+[[rules]]
+keys = "Xu"
+output = "ዑ"
+order = 2
+
+[[rules]]
+keys = "Xi"
+output = "ዒ"
+order = 3
+
+[[rules]]
+keys = "Xa"
+output = "ዓ"
+order = 4
+
+[[rules]]
+keys = "Xy"
+output = "ዔ"
+order = 5
+
+[[rules]]
+keys = "Xe"
+output = "ዕ"
+order = 6
+
+[[rules]]
+keys = "Xo"
+output = "ዖ"
+order = 7
+
+[[rules]]
+keys = "z"
+output = "ዘ"
+order = 1
+
+[[rules]]
+keys = "zu"
+output = "ዙ"
+order = 2
+
+[[rules]]
+keys = "zi"
+output = "ዚ"
+order = 3
+
+[[rules]]
+keys = "za"
+output = "ዛ"
+order = 4
+
+[[rules]]
+keys = "zy"
+output = "ዜ"
+order = 5
+
+[[rules]]
+keys = "ze"
+output = "ዝ"
+order = 6
+
+[[rules]]
+keys = "zo"
+output = "ዞ"
+order = 7
+
+[[rules]]
+keys = "zO"
+output = "ⶋ"
+order = 8
+
+[[rules]]
+keys = "zW"
+output = "ዟ"
+order = 4
+
+[[rules]]
+keys = "Z"
+output = "ዠ"
+order = 1
+
+[[rules]]
+keys = "Zu"
+output = "ዡ"
+order = 2
+
+[[rules]]
+keys = "Zi"
+output = "ዢ"
+order = 3
+
+[[rules]]
+keys = "Za"
+output = "ዣ"
+order = 4
+
+[[rules]]
+keys = "Zy"
+output = "ዤ"
+order = 5
+
+[[rules]]
+keys = "Ze"
+output = "ዥ"
+order = 6
+
+[[rules]]
+keys = "Zo"
+output = "ዦ"
+order = 7
+
+[[rules]]
+keys = "ZW"
+output = "ዧ"
+order = 4
+
+[[rules]]
+keys = "Y"
+output = "የ"
+order = 1
+
+[[rules]]
+keys = "Yu"
+output = "ዩ"
+order = 2
+
+[[rules]]
+keys = "Yi"
+output = "ዪ"
+order = 3
+
+[[rules]]
+keys = "Ya"
+output = "ያ"
+order = 4
+
+[[rules]]
+keys = "Yy"
+output = "ዬ"
+order = 5
+
+[[rules]]
+keys = "Ye"
+output = "ይ"
+order = 6
+
+[[rules]]
+keys = "Yo"
+output = "ዮ"
+order = 7
+
+[[rules]]
+keys = "YO"
+output = "ዯ"
+order = 8
+
+[[rules]]
+keys = "d"
+output = "ደ"
+order = 1
+
+[[rules]]
+keys = "du"
+output = "ዱ"
+order = 2
+
+[[rules]]
+keys = "di"
+output = "ዲ"
+order = 3
+
+[[rules]]
+keys = "da"
+output = "ዳ"
+order = 4
+
+[[rules]]
+keys = "dy"
+output = "ዴ"
+order = 5
+
+[[rules]]
+keys = "de"
+output = "ድ"
+order = 6
+
+[[rules]]
+keys = "do"
+output = "ዶ"
+order = 7
+
+[[rules]]
+keys = "dO"
+output = "ⶌ"
+order = 8
+
+[[rules]]
+keys = "dW"
+output = "ዷ"
+order = 4
+
+[[rules]]
+keys = "D"
+output = "ዸ"
+order = 1
+
+[[rules]]
+keys = "Du"
+output = "ዹ"
+order = 2
+
+[[rules]]
+keys = "Di"
+output = "ዺ"
+order = 3
+
+[[rules]]
+keys = "Da"
+output = "ዻ"
+order = 4
+
+[[rules]]
+keys = "Dy"
+output = "ዼ"
+order = 5
+
+[[rules]]
+keys = "De"
+output = "ዽ"
+order = 6
+
+[[rules]]
+keys = "Do"
+output = "ዾ"
+order = 7
+
+[[rules]]
+keys = "DO"
+output = "ⶍ"
+order = 8
+
+[[rules]]
+keys = "DW"
+output = "ዿ"
+order = 4
+
+[[rules]]
+keys = "j"
+output = "ጀ"
+order = 1
+
+[[rules]]
+keys = "ju"
+output = "ጁ"
+order = 2
+
+[[rules]]
+keys = "ji"
+output = "ጂ"
+order = 3
+
+[[rules]]
+keys = "ja"
+output = "ጃ"
+order = 4
+
+[[rules]]
+keys = "jy"
+output = "ጄ"
+order = 5
+
+[[rules]]
+keys = "je"
+output = "ጅ"
+order = 6
+
+[[rules]]
+keys = "jo"
+output = "ጆ"
+order = 7
+
+[[rules]]
+keys = "jO"
+output = "ⶎ"
+order = 8
+
+[[rules]]
+keys = "jW"
+output = "ጇ"
+order = 4
+
+[[rules]]
+keys = "g"
+output = "ገ"
+order = 1
+
+[[rules]]
+keys = "gu"
+output = "ጉ"
+order = 2
+
+[[rules]]
+keys = "gi"
+output = "ጊ"
+order = 3
+
+[[rules]]
+keys = "ga"
+output = "ጋ"
+order = 4
+
+[[rules]]
+keys = "gy"
+output = "ጌ"
+order = 5
+
+[[rules]]
+keys = "ge"
+output = "ግ"
+order = 6
+
+[[rules]]
+keys = "go"
+output = "ጎ"
+order = 7
+
+[[rules]]
+keys = "gO"
+output = "ጏ"
+order = 8
+
+[[rules]]
+keys = "gW"
+output = "ጓ"
+order = 4
+
+[[rules]]
+keys = "G"
+output = "ጘ"
+order = 1
+
+[[rules]]
+keys = "Gu"
+output = "ጙ"
+order = 2
+
+[[rules]]
+keys = "Gi"
+output = "ጚ"
+order = 3
+
+[[rules]]
+keys = "Ga"
+output = "ጛ"
+order = 4
+
+[[rules]]
+keys = "Gy"
+output = "ጜ"
+order = 5
+
+[[rules]]
+keys = "Ge"
+output = "ጝ"
+order = 6
+
+[[rules]]
+keys = "Go"
+output = "ጞ"
+order = 7
+
+[[rules]]
+keys = "GW"
+output = "ጟ"
+order = 4
+
+[[rules]]
+keys = "T"
+output = "ጠ"
+order = 1
+
+[[rules]]
+keys = "Tu"
+output = "ጡ"
+order = 2
+
+[[rules]]
+keys = "Ti"
+output = "ጢ"
+order = 3
+
+[[rules]]
+keys = "Ta"
+output = "ጣ"
+order = 4
+
+[[rules]]
+keys = "Ty"
+output = "ጤ"
+order = 5
+
+[[rules]]
+keys = "Te"
+output = "ጥ"
+order = 6
+
+[[rules]]
+keys = "To"
+output = "ጦ"
+order = 7
+
+[[rules]]
+keys = "TO"
+output = "ⶏ"
+order = 8
+
+[[rules]]
+keys = "TW"
+output = "ጧ"
+order = 4
+
+[[rules]]
+keys = "C"
+output = "ጨ"
+order = 1
+
+[[rules]]
+keys = "Cu"
+output = "ጩ"
+order = 2
+
+[[rules]]
+keys = "Ci"
+output = "ጪ"
+order = 3
+
+[[rules]]
+keys = "Ca"
+output = "ጫ"
+order = 4
+
+[[rules]]
+keys = "Cy"
+output = "ጬ"
+order = 5
+
+[[rules]]
+keys = "Ce"
+output = "ጭ"
+order = 6
+
+[[rules]]
+keys = "Co"
+output = "ጮ"
+order = 7
+
+[[rules]]
+keys = "CO"
+output = "ⶐ"
+order = 8
+
+[[rules]]
+keys = "CW"
+output = "ጯ"
+order = 4
+
+[[rules]]
+keys = "P"
+output = "ጰ"
+order = 1
+
+[[rules]]
+keys = "Pu"
+output = "ጱ"
+order = 2
+
+[[rules]]
+keys = "Pi"
+output = "ጲ"
+order = 3
+
+[[rules]]
+keys = "Pa"
+output = "ጳ"
+order = 4
+
+[[rules]]
+keys = "Py"
+output = "ጴ"
+order = 5
+
+[[rules]]
+keys = "Pe"
+output = "ጵ"
+order = 6
+
+[[rules]]
+keys = "Po"
+output = "ጶ"
+order = 7
+
+[[rules]]
+keys = "PO"
+output = "ⶑ"
+order = 8
+
+[[rules]]
+keys = "PW"
+output = "ጷ"
+order = 4
+
+[[rules]]
+keys = "F"
+output = "ጸ"
+order = 1
+
+[[rules]]
+keys = "Fu"
+output = "ጹ"
+order = 2
+
+[[rules]]
+keys = "Fi"
+output = "ጺ"
+order = 3
+
+[[rules]]
+keys = "Fa"
+output = "ጻ"
+order = 4
+
+[[rules]]
+keys = "Fy"
+output = "ጼ"
+order = 5
+
+[[rules]]
+keys = "Fe"
+output = "ጽ"
+order = 6
+
+[[rules]]
+keys = "Fo"
+output = "ጾ"
+order = 7
+
+[[rules]]
+keys = "FW"
+output = "ጿ"
+order = 4
+
+[[rules]]
+keys = "V"
+output = "ፀ"
+order = 1
+
+[[rules]]
+keys = "Vu"
+output = "ፁ"
+order = 2
+
+[[rules]]
+keys = "Vi"
+output = "ፂ"
+order = 3
+
+[[rules]]
+keys = "Va"
+output = "ፃ"
+order = 4
+
+[[rules]]
+keys = "Vy"
+output = "ፄ"
+order = 5
+
+[[rules]]
+keys = "Ve"
+output = "ፅ"
+order = 6
+
+[[rules]]
+keys = "Vo"
+output = "ፆ"
+order = 7
+
+[[rules]]
+keys = "VO"
+output = "ፇ"
+order = 8
+
+[[rules]]
+keys = "f"
+output = "ፈ"
+order = 1
+
+[[rules]]
+keys = "fu"
+output = "ፉ"
+order = 2
+
+[[rules]]
+keys = "fi"
+output = "ፊ"
+order = 3
+
+[[rules]]
+keys = "fa"
+output = "ፋ"
+order = 4
+
+[[rules]]
+keys = "fy"
+output = "ፌ"
+order = 5
+
+[[rules]]
+keys = "fe"
+output = "ፍ"
+order = 6
+
+[[rules]]
+keys = "fo"
+output = "ፎ"
+order = 7
+
+[[rules]]
+keys = "fW"
+output = "ፏ"
+order = 4
+
+[[rules]]
+keys = "p"
+output = "ፐ"
+order = 1
+
+[[rules]]
+keys = "pu"
+output = "ፑ"
+order = 2
+
+[[rules]]
+keys = "pi"
+output = "ፒ"
+order = 3
+
+[[rules]]
+keys = "pa"
+output = "ፓ"
+order = 4
+
+[[rules]]
+keys = "py"
+output = "ፔ"
+order = 5
+
+[[rules]]
+keys = "pe"
+output = "ፕ"
+order = 6
+
+[[rules]]
+keys = "po"
+output = "ፖ"
+order = 7
+
+[[rules]]
+keys = "pO"
+output = "ⶒ"
+order = 8
+
+[[rules]]
+keys = "pW"
+output = "ፗ"
+order = 4
+
+[[rules]]
+keys = "store"
+output = "ⶠ"
+order = 1
+
+[[rules]]
+keys = "storeu"
+output = "ⶡ"
+order = 2
+
+[[rules]]
+keys = "storei"
+output = "ⶢ"
+order = 3
+
+[[rules]]
+keys = "storea"
+output = "ⶣ"
+order = 4
+
+[[rules]]
+keys = "storey"
+output = "ⶤ"
+order = 5
+
+[[rules]]
+keys = "storee"
+output = "ⶥ"
+order = 6
+
+[[rules]]
+keys = "storeo"
+output = "ⶦ"
+order = 7
+
+[[rules]]
+keys = "(keyU)"
+output = "ⶨ"
+order = 1
+
+[[rules]]
+keys = "(keyU)u"
+output = "ⶩ"
+order = 2
+
+[[rules]]
+keys = "(keyU)i"
+output = "ⶪ"
+order = 3
+
+[[rules]]
+keys = "(keyU)a"
+output = "ⶫ"
+order = 4
+
+[[rules]]
+keys = "(keyU)y"
+output = "ⶬ"
+order = 5
+
+[[rules]]
+keys = "(keyU)e"
+output = "ⶭ"
+order = 6
+
+[[rules]]
+keys = "(keyU)o"
+output = "ⶮ"
+order = 7
+
+[[rules]]
+keys = "ሀ"
+output = "ⶰ"
+order = 1
+
+[[rules]]
+keys = "ሀu"
+output = "ⶱ"
+order = 2
+
+[[rules]]
+keys = "ሀi"
+output = "ⶲ"
+order = 3
+
+[[rules]]
+keys = "ሀa"
+output = "ⶳ"
+order = 4
+
+[[rules]]
+keys = "ሀy"
+output = "ⶴ"
+order = 5
+
+[[rules]]
+keys = "ሀe"
+output = "ⶵ"
+order = 6
+
+[[rules]]
+keys = "ሀo"
+output = "ⶶ"
+order = 7
+
+[[rules]]
+keys = "ለ"
+output = "ⶸ"
+order = 1
+
+[[rules]]
+keys = "ለu"
+output = "ⶹ"
+order = 2
+
+[[rules]]
+keys = "ለi"
+output = "ⶺ"
+order = 3
+
+[[rules]]
+keys = "ለa"
+output = "ⶻ"
+order = 4
+
+[[rules]]
+keys = "ለy"
+output = "ⶼ"
+order = 5
+
+[[rules]]
+keys = "ለe"
+output = "ⶽ"
+order = 6
+
+[[rules]]
+keys = "ለo"
+output = "ⶾ"
+order = 7
+
+[[rules]]
+keys = "ሐ"
+output = "ⷀ"
+order = 1
+
+[[rules]]
+keys = "ሐu"
+output = "ⷁ"
+order = 2
+
+[[rules]]
+keys = "ሐi"
+output = "ⷂ"
+order = 3
+
+[[rules]]
+keys = "ሐa"
+output = "ⷃ"
+order = 4
+
+[[rules]]
+keys = "ሐy"
+output = "ⷄ"
+order = 5
+
+[[rules]]
+keys = "ሐe"
+output = "ⷅ"
+order = 6
+
+[[rules]]
+keys = "ሐo"
+output = "ⷆ"
+order = 7
+
+[[rules]]
+keys = "መ"
+output = "ⷈ"
+order = 1
+
+[[rules]]
+keys = "መu"
+output = "ⷉ"
+order = 2
+
+[[rules]]
+keys = "መi"
+output = "ⷊ"
+order = 3
+
+[[rules]]
+keys = "መa"
+output = "ⷋ"
+order = 4
+
+[[rules]]
+keys = "መy"
+output = "ⷌ"
+order = 5
+
+[[rules]]
+keys = "መe"
+output = "ⷍ"
+order = 6
+
+[[rules]]
+keys = "መo"
+output = "ⷎ"
+order = 7
+
+[[rules]]
+keys = "ሠ"
+output = "ⷐ"
+order = 1
+
+[[rules]]
+keys = "ሠu"
+output = "ⷑ"
+order = 2
+
+[[rules]]
+keys = "ሠi"
+output = "ⷒ"
+order = 3
+
+[[rules]]
+keys = "ሠa"
+output = "ⷓ"
+order = 4
+
+[[rules]]
+keys = "ሠy"
+output = "ⷔ"
+order = 5
+
+[[rules]]
+keys = "ሠe"
+output = "ⷕ"
+order = 6
+
+[[rules]]
+keys = "ሠo"
+output = "ⷖ"
+order = 7
+
+[[rules]]
+keys = "ረ"
+output = "ⷘ"
+order = 1
+
+[[rules]]
+keys = "ረu"
+output = "ⷙ"
+order = 2
+
+[[rules]]
+keys = "ረi"
+output = "ⷚ"
+order = 3
+
+[[rules]]
+keys = "ረa"
+output = "ⷛ"
+order = 4
+
+[[rules]]
+keys = "ረy"
+output = "ⷜ"
+order = 5
+
+[[rules]]
+keys = "ረe"
+output = "ⷝ"
+order = 6
+
+[[rules]]
+keys = "ረo"
+output = "ⷞ"
+order = 7
+
+[[rules]]
+keys = "ሰ"
+output = "ꬅ"
+order = 1
+
+[[rules]]
+keys = "ሰu"
+output = "ꬁ"
+order = 2
+
+[[rules]]
+keys = "ሰi"
+output = "ꬂ"
+order = 3
+
+[[rules]]
+keys = "ሰa"
+output = "ꬃ"
+order = 4
+
+[[rules]]
+keys = "ሰy"
+output = "ꬄ"
+order = 5
+
+[[rules]]
+keys = "ሰe"
+output = "ꬅ"
+order = 6
+
+[[rules]]
+keys = "ሰo"
+output = "ꬆ"
+order = 7
+
+[[rules]]
+keys = "ሸ"
+output = "ꬕ"
+order = 1
+
+[[rules]]
+keys = "ሸu"
+output = "ꬑ"
+order = 2
+
+[[rules]]
+keys = "ሸi"
+output = "ꬒ"
+order = 3
+
+[[rules]]
+keys = "ሸa"
+output = "ꬓ"
+order = 4
+
+[[rules]]
+keys = "ሸy"
+output = "ꬔ"
+order = 5
+
+[[rules]]
+keys = "ሸe"
+output = "ꬕ"
+order = 6
+
+[[rules]]
+keys = "ሸo"
+output = "ꬖ"
+order = 7
+
+[[rules]]
+keys = "ቀ"
+output = "ꬍ"
+order = 1
+
+[[rules]]
+keys = "ቀu"
+output = "ꬉ"
+order = 2
+
+[[rules]]
+keys = "ቀi"
+output = "ꬊ"
+order = 3
+
+[[rules]]
+keys = "ቀa"
+output = "ꬋ"
+order = 4
+
+[[rules]]
+keys = "ቀy"
+output = "ꬌ"
+order = 5
+
+[[rules]]
+keys = "ቀe"
+output = "ꬍ"
+order = 6
+
+[[rules]]
+keys = "ቀo"
+output = "ꬎ"
+order = 7
+
+[[rules]]
+keys = "ቐ"
+output = "ꬠ"
+order = 1
+
+[[rules]]
+keys = "ቐu"
+output = "ꬡ"
+order = 2
+
+[[rules]]
+keys = "ቐi"
+output = "ꬢ"
+order = 3
+
+[[rules]]
+keys = "ቐa"
+output = "ꬣ"
+order = 4
+
+[[rules]]
+keys = "ቐy"
+output = "ꬤ"
+order = 5
+
+[[rules]]
+keys = "ቐe"
+output = "ꬥ"
+order = 6
+
+[[rules]]
+keys = "ቐo"
+output = "ꬦ"
+order = 7
+
+[[rules]]
+keys = "በ"
+output = "ꬨ"
+order = 1
+
+[[rules]]
+keys = "በu"
+output = "ꬩ"
+order = 2
+
+[[rules]]
+keys = "በi"
+output = "ꬪ"
+order = 3
+
+[[rules]]
+keys = "በa"
+output = "ꬫ"
+order = 4
+
+[[rules]]
+keys = "በy"
+output = "ꬬ"
+order = 5
+
+[[rules]]
+keys = "በe"
+output = "ꬭ"
+order = 6
+
+[[rules]]
+keys = "በo"
+output = "ꬮ"
+order = 7
+
+[[rules]]
+keys = "ቨ"
+output = "c"
+order = 1
+
+[[rules]]
+keys = "ቨu"
+output = "c"
+order = 2
+
+[[rules]]
+keys = "ቨi"
+output = "c"
+order = 3
+
+[[rules]]
+keys = "ቨa"
+output = "c"
+order = 4
+
+[[rules]]
+keys = "ቨy"
+output = "c"
+order = 5
+
+[[rules]]
+keys = "ቨe"
+output = "c"
+order = 6
+
+[[rules]]
+keys = "ቨo"
+output = "c"
+order = 7
+
+[[rules]]
+keys = "ተ"
+output = "---------------------------------------------------------------------------------"
+order = 1
+
+[[rules]]
+keys = "ተu"
+output = "---------------------------------------------------------------------------------"
+order = 2
+
+[[rules]]
+keys = "ተi"
+output = "---------------------------------------------------------------------------------"
+order = 3
+
+[[rules]]
+keys = "ተa"
+output = "---------------------------------------------------------------------------------"
+order = 4
+
+[[rules]]
+keys = "ተy"
+output = "---------------------------------------------------------------------------------"
+order = 5
+
+[[rules]]
+keys = "ተe"
+output = "---------------------------------------------------------------------------------"
+order = 6
+
+[[rules]]
+keys = "ተo"
+output = "---------------------------------------------------------------------------------"
+order = 7
+
+[[rules]]
+keys = "sh"
+output = "ሸ"
+order = 1
+
+[[rules]]
+keys = "shu"
+output = "ሹ"
+order = 2
+
+[[rules]]
+keys = "shi"
+output = "ሺ"
+order = 3
+
+[[rules]]
+keys = "sha"
+output = "ሻ"
+order = 4
+
+[[rules]]
+keys = "shy"
+output = "ሼ"
+order = 5
+
+[[rules]]
+keys = "she"
+output = "ሽ"
+order = 6
+
+[[rules]]
+keys = "sho"
+output = "ሾ"
+order = 7
+
+[[rules]]
+keys = "shW"
+output = "ሿ"
+order = 4
+
+[[rules]]
+keys = "shwa"
+output = "ሿ"
+order = 4
+
+[[rules]]
+keys = "ch"
+output = "ቸ"
+order = 1
+
+[[rules]]
+keys = "chu"
+output = "ቹ"
+order = 2
+
+[[rules]]
+keys = "chi"
+output = "ቺ"
+order = 3
+
+[[rules]]
+keys = "cha"
+output = "ቻ"
+order = 4
+
+[[rules]]
+keys = "chy"
+output = "ቼ"
+order = 5
+
+[[rules]]
+keys = "che"
+output = "ች"
+order = 6
+
+[[rules]]
+keys = "cho"
+output = "ቾ"
+order = 7
+
+[[rules]]
+keys = "chW"
+output = "ቿ"
+order = 4
+
+[[rules]]
+keys = "chwa"
+output = "ቿ"
+order = 4
+
+[[rules]]
+keys = "nyu"
+output = "ኙ"
+order = 2
+
+[[rules]]
+keys = "nyi"
+output = "ኚ"
+order = 3
+
+[[rules]]
+keys = "nya"
+output = "ኛ"
+order = 4
+
+[[rules]]
+keys = "nyy"
+output = "ኜ"
+order = 5
+
+[[rules]]
+keys = "nye"
+output = "ኝ"
+order = 6
+
+[[rules]]
+keys = "nyo"
+output = "ኞ"
+order = 7
+
+[[rules]]
+keys = "nyW"
+output = "ኟ"
+order = 4
+
+[[rules]]
+keys = "nywa"
+output = "ኟ"
+order = 4
+
+[[rules]]
+keys = "zh"
+output = "ዠ"
+order = 1
+
+[[rules]]
+keys = "zhu"
+output = "ዡ"
+order = 2
+
+[[rules]]
+keys = "zhi"
+output = "ዢ"
+order = 3
+
+[[rules]]
+keys = "zha"
+output = "ዣ"
+order = 4
+
+[[rules]]
+keys = "zhy"
+output = "ዤ"
+order = 5
+
+[[rules]]
+keys = "zhe"
+output = "ዥ"
+order = 6
+
+[[rules]]
+keys = "zho"
+output = "ዦ"
+order = 7
+
+[[rules]]
+keys = "zhW"
+output = "ዧ"
+order = 4
+
+[[rules]]
+keys = "zhwa"
+output = "ዧ"
+order = 4
+
+[[rules]]
+keys = "ts"
+output = "ጸ"
+order = 1
+
+[[rules]]
+keys = "tsu"
+output = "ጹ"
+order = 2
+
+[[rules]]
+keys = "tsi"
+output = "ጺ"
+order = 3
+
+[[rules]]
+keys = "tsa"
+output = "ጻ"
+order = 4
+
+[[rules]]
+keys = "tsy"
+output = "ጼ"
+order = 5
+
+[[rules]]
+keys = "tse"
+output = "ጽ"
+order = 6
+
+[[rules]]
+keys = "tso"
+output = "ጾ"
+order = 7
+
+[[rules]]
+keys = "tsW"
+output = "ጿ"
+order = 4
+
+[[rules]]
+keys = "tswa"
+output = "ጿ"
+order = 4
+
+[[rules]]
+keys = "kh"
+output = "ኸ"
+order = 1
+
+[[rules]]
+keys = "khu"
+output = "ኹ"
+order = 2
+
+[[rules]]
+keys = "khi"
+output = "ኺ"
+order = 3
+
+[[rules]]
+keys = "kha"
+output = "ኻ"
+order = 4
+
+[[rules]]
+keys = "khy"
+output = "ኼ"
+order = 5
+
+[[rules]]
+keys = "khe"
+output = "ኽ"
+order = 6
+
+[[rules]]
+keys = "kho"
+output = "ኾ"
+order = 7
+
+[[rules]]
+keys = "khW"
+output = "ዃ"
+order = 4
+
+[[rules]]
+keys = "khwa"
+output = "ዃ"
+order = 4
+
+[[rules]]
+keys = "h["
+output = "ኀ"
+order = 1
+
+[[rules]]
+keys = "H["
+output = "ኸ"
+order = 1
+
+[[rules]]
+keys = "s["
+output = "ሠ"
+order = 1
+
+[[rules]]
+keys = "t["
+output = "ጸ"
+order = 1
+
+[[rules]]
+keys = "T["
+output = "ፀ"
+order = 1
+
+[[rules]]
+keys = ":"
+output = "፡"
+
+[[rules]]
+keys = "::"
+output = "፨"
+
+[[rules]]
+keys = "."
+output = "።"
+
+[[rules]]
+keys = ","
+output = "፥"
+
+[[rules]]
+keys = ",,"
+output = "፣"
+
+[[rules]]
+keys = ";"
+output = "፤"
+
+[[rules]]
+keys = ":-"
+output = "፦"
+
+[[rules]]
+keys = ":."
+output = "፧"
+
+[[rules]]
+keys = "1*"
+output = "፩"
+
+[[rules]]
+keys = "2*"
+output = "፪"
+
+[[rules]]
+keys = "3*"
+output = "፫"
+
+[[rules]]
+keys = "4*"
+output = "፬"
+
+[[rules]]
+keys = "5*"
+output = "፭"
+
+[[rules]]
+keys = "6*"
+output = "፮"
+
+[[rules]]
+keys = "7*"
+output = "፯"
+
+[[rules]]
+keys = "8*"
+output = "፰"
+
+[[rules]]
+keys = "9*"
+output = "፱"
+
+[[rules]]
+keys = "10*"
+output = "፲"
+
+[[rules]]
+keys = "20*"
+output = "፳"
+
+[[rules]]
+keys = "30*"
+output = "፴"
+
+[[rules]]
+keys = "40*"
+output = "፵"
+
+[[rules]]
+keys = "50*"
+output = "፶"
+
+[[rules]]
+keys = "60*"
+output = "፷"
+
+[[rules]]
+keys = "70*"
+output = "፸"
+
+[[rules]]
+keys = "80*"
+output = "፹"
+
+[[rules]]
+keys = "90*"
+output = "፺"
+
+[[rules]]
+keys = "100*"
+output = "፻"
+
+[[rules]]
+keys = "10000*"
+output = "፼"
+

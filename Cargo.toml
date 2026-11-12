@@ -1,0 +1,39 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/fidel-core",
+    "crates/fidel-engine",
+    "crates/fidel-protocol",
+    "crates/fidel-diagnostics",
+    "platform/linux-ibus",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Fidel Amharic Contributors"]
+license = "MIT"
+repository = "https://github.com/fidel-amharic/fidel"
+readme = "README.md"
+
+[workspace.dependencies]
+fidel-core = { path = "crates/fidel-core" }
+fidel-engine = { path = "crates/fidel-engine" }
+fidel-protocol = { path = "crates/fidel-protocol" }
+fidel-diagnostics = { path = "crates/fidel-diagnostics" }
+
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+thiserror = "2.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+[workspace.lints.rust]
+unsafe_code = "warn"
+
+[workspace.lints.clippy]
+redundant_clone = "warn"
+needless_collect = "warn"
+large_enum_variant = "warn"
+all = "warn"
