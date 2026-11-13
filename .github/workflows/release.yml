@@ -16,7 +16,7 @@ env:
 
 jobs:
   # ─────────────────────────────────────────────────
-  # Linux x86_64: IBus engine binary + tarball
+  # Linux x86_64: IBus engine + tarball + .deb
   # ─────────────────────────────────────────────────
   build-linux:
     name: Build Linux (IBus)
@@ -45,21 +45,31 @@ jobs:
       - name: Strip binary
         run: strip target/release/linux-ibus
 
-      - name: Package tarball
+      - name: Package tarball and .deb
         run: |
           VERSION="${{ github.ref_name }}"
-          [ "$VERSION" = "" ] && VERSION="${{ github.event.inputs.version }}"
+          if [ "$VERSION" = "" ] || [ "$VERSION" = "${{ github.repository }}" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+          fi
+          # workflow_dispatch on non-tag: ref_name is branch; prefer input
+          if [[ ! "$VERSION" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+            VERSION="${{ github.event.inputs.version }}"
+          fi
           PKGNAME="fidel-amharic-${VERSION}-linux-x86_64"
           mkdir -p "dist/${PKGNAME}"
           cp target/release/linux-ibus               "dist/${PKGNAME}/ibus-engine-fidel-amharic"
           cp platform/linux-ibus/data/fidel-amharic.xml "dist/${PKGNAME}/"
           cp profiles/power_geez_phonetic_unicode.toml  "dist/${PKGNAME}/"
           cp packaging/linux/install.sh              "dist/${PKGNAME}/"
+          chmod +x "dist/${PKGNAME}/install.sh"
           cp README.md LICENSE                       "dist/${PKGNAME}/"
           tar -czf "dist/${PKGNAME}.tar.gz" -C dist "${PKGNAME}"
           sha256sum "dist/${PKGNAME}.tar.gz" > "dist/${PKGNAME}.tar.gz.sha256"
-          echo "ASSET=dist/${PKGNAME}.tar.gz" >> $GITHUB_ENV
-          echo "ASSET_SHA=dist/${PKGNAME}.tar.gz.sha256" >> $GITHUB_ENV
+
+          VERSION="$VERSION" OUT_DIR=dist BIN_SRC=target/release/linux-ibus \
+            bash packaging/linux/build-deb.sh
+          DEB_VER="${VERSION#v}"
+          sha256sum "dist/fidel-amharic_${DEB_VER}_amd64.deb" > "dist/fidel-amharic_${DEB_VER}_amd64.deb.sha256"
 
       - name: Upload Linux artifact
         uses: actions/upload-artifact@v4
@@ -99,13 +109,17 @@ jobs:
       - name: Package Windows zip
         run: |
           VERSION="${{ github.ref_name }}"
-          [ "$VERSION" = "" ] && VERSION="${{ github.event.inputs.version }}"
+          if [[ ! "$VERSION" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+            VERSION="${{ github.event.inputs.version }}"
+          fi
           PKGNAME="fidel-amharic-${VERSION}-windows-x86_64"
           mkdir -p "dist/${PKGNAME}"
           cp target/x86_64-pc-windows-gnu/release/fidel_amharic.dll "dist/${PKGNAME}/"
           cp packaging/windows/install.ps1   "dist/${PKGNAME}/"
           cp packaging/windows/uninstall.ps1 "dist/${PKGNAME}/"
           cp README.md LICENSE               "dist/${PKGNAME}/"
+          # Keep a copy of the DLL at dist root for the MSI job
+          cp target/x86_64-pc-windows-gnu/release/fidel_amharic.dll dist/fidel_amharic.dll
           cd dist && zip -r "${PKGNAME}.zip" "${PKGNAME}/"
           sha256sum "${PKGNAME}.zip" > "${PKGNAME}.zip.sha256"
 
@@ -116,7 +130,52 @@ jobs:
           path: dist/
 
   # ─────────────────────────────────────────────────
-  # macOS arm64: Static library + Swift bundle sources
+  # Windows MSI (unsigned) via WiX on windows-latest
+  # ─────────────────────────────────────────────────
+  package-windows-msi:
+    name: Package Windows MSI
+    needs: [build-windows]
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download Windows DLL artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: windows-x86_64
+          path: dist/
+
+      - name: Install WiX Toolset
+        run: choco install wixtoolset --version 3.14.1 -y
+
+      - name: Build MSI
+        shell: pwsh
+        run: |
+          $Version = "${{ github.ref_name }}"
+          if ($Version -notmatch '^v?\d+\.\d+\.\d+') {
+            $Version = "${{ github.event.inputs.version }}"
+          }
+          $env:VERSION = $Version
+          $env:DLL_PATH = (Resolve-Path "dist/fidel_amharic.dll").Path
+          $env:OUT_DIR = (Resolve-Path "dist").Path
+          $env:WIX = "C:\Program Files (x86)\WiX Toolset v3.14"
+          & .\packaging\windows\build-msi.ps1
+          $ver = $Version.TrimStart('v')
+          $msi = "dist/fidel-amharic-$ver-windows-x86_64.msi"
+          Get-FileHash $msi -Algorithm SHA256 |
+            ForEach-Object { "$($_.Hash.ToLower())  $(Split-Path $msi -Leaf)" } |
+            Set-Content "$msi.sha256"
+
+      - name: Upload MSI artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-msi
+          path: |
+            dist/*.msi
+            dist/*.msi.sha256
+
+  # ─────────────────────────────────────────────────
+  # macOS: universal app + tarball + unsigned DMG
   # ─────────────────────────────────────────────────
   build-macos:
     name: Build macOS (InputMethodKit)
@@ -152,20 +211,27 @@ jobs:
             -output target/libfidel_protocol_universal.a
 
       - name: Build & package FidelAmharic.app
-        run: |
-          bash platform/macos-imk/build.sh
+        run: bash platform/macos-imk/build.sh
 
-      - name: Create macOS tarball
+      - name: Create macOS tarball and DMG
         run: |
           VERSION="${{ github.ref_name }}"
-          [ "$VERSION" = "" ] && VERSION="${{ github.event.inputs.version }}"
+          if [[ ! "$VERSION" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+            VERSION="${{ github.event.inputs.version }}"
+          fi
           PKGNAME="fidel-amharic-${VERSION}-macos-universal"
           mkdir -p "dist/${PKGNAME}"
           cp -R target/macos/FidelAmharic.app "dist/${PKGNAME}/"
           cp packaging/macos/install.sh       "dist/${PKGNAME}/"
+          chmod +x "dist/${PKGNAME}/install.sh"
           cp README.md LICENSE                "dist/${PKGNAME}/"
           tar -czf "dist/${PKGNAME}.tar.gz" -C dist "${PKGNAME}"
           shasum -a 256 "dist/${PKGNAME}.tar.gz" > "dist/${PKGNAME}.tar.gz.sha256"
+
+          VERSION="$VERSION" OUT_DIR=dist APP_BUNDLE=target/macos/FidelAmharic.app \
+            bash packaging/macos/package.sh
+          DMG="dist/fidel-amharic-${VERSION#v}-macos-universal.dmg"
+          shasum -a 256 "$DMG" > "${DMG}.sha256"
 
       - name: Upload macOS artifact
         uses: actions/upload-artifact@v4
@@ -178,7 +244,7 @@ jobs:
   # ─────────────────────────────────────────────────
   release:
     name: Publish GitHub Release
-    needs: [build-linux, build-windows, build-macos]
+    needs: [build-linux, build-windows, package-windows-msi, build-macos]
     runs-on: ubuntu-22.04
     permissions:
       contents: write
@@ -189,12 +255,24 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: dist/
+          merge-multiple: true
 
       - name: Determine version
         run: |
           VERSION="${{ github.ref_name }}"
-          [ "$VERSION" = "" ] && VERSION="${{ github.event.inputs.version }}"
+          if [[ ! "$VERSION" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+            VERSION="${{ github.event.inputs.version }}"
+          fi
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
+
+      - name: List release assets
+        run: |
+          # merge-multiple places artifact files directly under dist/
+          find dist -type f \( -name '*.tar.gz' -o -name '*.zip' -o -name '*.deb' -o -name '*.msi' -o -name '*.dmg' -o -name '*.sha256' \) | sort
+          # If any nested leftovers remain, hoist them
+          find dist -mindepth 2 -type f \( -name '*.tar.gz' -o -name '*.zip' -o -name '*.deb' -o -name '*.msi' -o -name '*.dmg' -o -name '*.sha256' \) \
+            -exec mv -n {} dist/ \; || true
+          ls -la dist/
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -209,44 +287,51 @@ jobs:
             A native system-wide Unicode Ethiopic Input Method Editor (IME) for Linux, Windows, and macOS.
             Power Geez phonetic compatible. Zero clipboard hacks. Fully offline.
 
+            **These builds are unsigned.** Windows SmartScreen and macOS Gatekeeper may warn; see install notes below.
+
             ---
 
-            ### 📦 Downloads
+            ### Downloads (click-install)
 
-            | Platform | File | Notes |
+            | Platform | File | Install |
             |---|---|---|
-            | **Linux x86_64** | `fidel-amharic-*-linux-x86_64.tar.gz` | IBus + Fcitx5 (via IBus bridge) |
-            | **Windows x86_64** | `fidel-amharic-*-windows-x86_64.zip` | TSF DLL, run `install.ps1` as Admin |
-            | **macOS Universal** | `fidel-amharic-*-macos-universal.tar.gz` | Apple Silicon + Intel |
+            | **Linux x86_64** | `fidel-amharic_*_amd64.deb` | `sudo dpkg -i fidel-amharic_*.deb` |
+            | **Windows x86_64** | `fidel-amharic-*-windows-x86_64.msi` | Double-click MSI (Admin) |
+            | **macOS Universal** | `fidel-amharic-*-macos-universal.dmg` | Open DMG → run Install command |
+
+            Portable archives (`.tar.gz` / `.zip`) are also attached if you prefer script install.
 
             ---
 
-            ### 🚀 Quick Start — Linux
+            ### Quick Start — Linux (.deb)
 
             ```bash
-            tar xzf fidel-amharic-*-linux-x86_64.tar.gz
-            cd fidel-amharic-*-linux-x86_64
-            ./install.sh --user     # no root needed
+            sudo dpkg -i fidel-amharic_*_amd64.deb
             ```
             Then: **Settings → Keyboard → Input Sources → + → Amharic (Fidel Amharic)**
 
-            ### 🚀 Quick Start — Windows
+            Or from the tarball (no root): extract, then `./install.sh --user`.
 
-            1. Extract zip, right-click `install.ps1` → **Run with PowerShell as Administrator**
-            2. Switch input with **Win + Space**
+            ### Quick Start — Windows (.msi)
 
-            ### 🚀 Quick Start — macOS
+            1. Double-click the `.msi` and allow elevation.
+            2. If SmartScreen appears: **More info → Run anyway**.
+            3. Switch input with **Win + Space**.
 
-            ```bash
-            tar xzf fidel-amharic-*-macos-universal.tar.gz
-            cd fidel-amharic-*-macos-universal
-            ./install.sh
-            ```
-            Then: **System Settings → Keyboard → Text Input → Edit → + → Amharic → Fidel Amharic**
+            Zip fallback: extract and run `install.ps1` as Administrator.
+
+            ### Quick Start — macOS (.dmg)
+
+            1. Open the DMG and double-click **Install Fidel Amharic.command**.
+            2. If Gatekeeper blocks: **System Settings → Privacy & Security → Allow anyway**, or right-click → Open.
+            3. **System Settings → Keyboard → Text Input → Edit → + → Amharic → Fidel Amharic**
+
+            Optional quarantine clear:
+            `xattr -cr "~/Library/Input Methods/FidelAmharic.app"`
 
             ---
 
-            ### ⌨️ Typing (Power Geez Phonetic)
+            ### Typing (Power Geez Phonetic)
 
             | Type | Output | | Type | Output |
             |---|---|---|---|---|
@@ -256,14 +341,18 @@ jobs:
             | `ha` | ሃ | | `::` | ። |
             | `be` | በ | | `:` | ፡ |
 
-            See full Power Geez cheat sheet in [README](README.md).
-
             ---
 
             ### Checksums
             Verify downloads with the accompanying `.sha256` files.
           files: |
-            dist/**/*.tar.gz
-            dist/**/*.tar.gz.sha256
-            dist/**/*.zip
-            dist/**/*.zip.sha256
+            dist/*.tar.gz
+            dist/*.tar.gz.sha256
+            dist/*.zip
+            dist/*.zip.sha256
+            dist/*.deb
+            dist/*.deb.sha256
+            dist/*.msi
+            dist/*.msi.sha256
+            dist/*.dmg
+            dist/*.dmg.sha256

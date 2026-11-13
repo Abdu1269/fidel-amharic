@@ -33,7 +33,19 @@ Fidel Amharic is an open-source native input method editor (IME) designed to all
 | [`fidel-diagnostics`](crates/fidel-diagnostics) | Privacy-safe diagnostic reports (no keystroke logging) |
 | [`linux-ibus`](platform/linux-ibus) | Native Linux IBus engine daemon using pure Rust D-Bus (`zbus`) |
 
-## Quick Start (Linux)
+## Download (click install)
+
+Prebuilt installers are published on [GitHub Releases](https://github.com/fidel-amharic/fidel/releases):
+
+| Platform | Artifact | Install |
+|---|---|---|
+| Linux | `.deb` | `sudo dpkg -i fidel-amharic_*_amd64.deb` |
+| Windows | `.msi` | Double-click (Admin). If SmartScreen warns: More info → Run anyway |
+| macOS | `.dmg` | Open DMG → run **Install Fidel Amharic**. If Gatekeeper blocks: Allow anyway |
+
+Builds are currently **unsigned**. Full steps: [OS Installation Guide](docs/os-installation.md).
+
+## Quick Start (Linux from source)
 
 ### Build and Test
 ```bash

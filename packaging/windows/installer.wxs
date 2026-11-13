@@ -27,33 +27,13 @@
         </Directory>
 
         <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-            <!-- TSF Text Service DLL -->
+            <!-- SelfReg invokes DllRegisterServer / DllUnregisterServer via MSI -->
             <Component Id="FidelTsfDll" Guid="0b6f932e-4b68-4a92-bf3b-9e4a3c108c9d" Win64="yes">
                 <File Id="FidelDllFile"
-                      Source="$(var.CargoTargetDir)\release\fidel_amharic.dll"
+                      Source="$(var.DllDir)\fidel_amharic.dll"
                       KeyPath="yes"
                       SelfRegCost="1" />
             </Component>
         </ComponentGroup>
-
-        <!-- Execute regsvr32 on Install / Uninstall -->
-        <CustomAction Id="RegisterServer"
-                      Directory="INSTALLFOLDER"
-                      ExeCommand='[SystemFolder]regsvr32.exe /s "[INSTALLFOLDER]fidel_amharic.dll"'
-                      Execute="deferred"
-                      Return="check"
-                      Impersonate="no" />
-
-        <CustomAction Id="UnregisterServer"
-                      Directory="INSTALLFOLDER"
-                      ExeCommand='[SystemFolder]regsvr32.exe /u /s "[INSTALLFOLDER]fidel_amharic.dll"'
-                      Execute="deferred"
-                      Return="ignore"
-                      Impersonate="no" />
-
-        <InstallExecuteSequence>
-            <Custom Action="UnregisterServer" Before="RemoveFiles">Installed AND (REMOVE="ALL")</Custom>
-            <Custom Action="RegisterServer" After="InstallFiles">NOT Installed OR REINSTALL</Custom>
-        </InstallExecuteSequence>
     </Product>
 </Wix>

@@ -2,7 +2,7 @@
 <component>
     <name>org.freedesktop.IBus.FidelAmharic</name>
     <description>Fidel Amharic Input Method</description>
-    <exec>/home/abdu/fidel/target/release/linux-ibus</exec>
+    <exec>@FIDEL_ENGINE_PATH@</exec>
     <version>0.1.0</version>
     <author>Fidel Amharic Contributors</author>
     <license>MIT</license>

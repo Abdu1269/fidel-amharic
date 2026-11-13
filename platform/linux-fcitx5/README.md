@@ -12,7 +12,7 @@ When the Fidel Amharic IBus engine descriptor is installed (via `packaging/linux
 - `fcitx5-module-ibus` (included in Ubuntu `fcitx5-frontend-ibus` or Fedora `fcitx5-ibus`)
 
 ### Activation:
-1. Run `./packaging/linux/install.sh --user` (or `./packaging/linux/install.sh --system`).
+1. Install via `.deb` (`sudo dpkg -i fidel-amharic_*.deb`) or run `./packaging/linux/install.sh --user` / `--system`.
 2. Run `fcitx5-remote -r` to reload Fcitx5.
 3. In Fcitx5 Configuration Tool, search for **Amharic (Fidel Amharic)** and add it to your active input methods.
 
