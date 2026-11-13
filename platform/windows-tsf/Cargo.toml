@@ -7,6 +7,7 @@ authors.workspace = true
 description = "Windows Text Services Framework (TSF) text service for Fidel Amharic"
 
 [lib]
+name = "fidel_amharic"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
