@@ -69,12 +69,17 @@ EOF
 cat > "${PKG_DIR}/DEBIAN/postinst" <<'EOF'
 #!/bin/sh
 set -e
-# Note: Never run 'ibus restart' in postinst as root; ibus-daemon is a per-user
-# session service and running it as root hangs waiting for a session D-Bus.
-# Update system cache non-blockingly:
+# Never run 'ibus restart' here as root — it blocks forever on session D-Bus.
+# Cache refresh is best-effort and time-bounded.
 if command -v ibus >/dev/null 2>&1; then
-    ibus write-cache --system 2>/dev/null || true
+    if command -v timeout >/dev/null 2>&1; then
+        timeout 3s ibus write-cache --system >/dev/null 2>&1 || true
+    else
+        ibus write-cache --system >/dev/null 2>&1 || true
+    fi
 fi
+echo "Fidel Amharic installed. Enable it in Settings → Keyboard → Input Sources."
+echo "If already logged in, run: ibus restart"
 exit 0
 EOF
 chmod 755 "${PKG_DIR}/DEBIAN/postinst"
