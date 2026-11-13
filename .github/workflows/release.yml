@@ -145,8 +145,15 @@ jobs:
           name: windows-x86_64
           path: dist/
 
-      - name: Install WiX Toolset
-        run: choco install wixtoolset --version 3.14.1 -y
+      - name: Ensure WiX Toolset
+        shell: pwsh
+        run: |
+          $candle = Get-Command candle.exe -ErrorAction SilentlyContinue
+          if (-not $candle) {
+            choco install wixtoolset -y --no-progress
+          } else {
+            Write-Host "WiX already available: $($candle.Source)"
+          }
 
       - name: Build MSI
         shell: pwsh
@@ -158,7 +165,12 @@ jobs:
           $env:VERSION = $Version
           $env:DLL_PATH = (Resolve-Path "dist/fidel_amharic.dll").Path
           $env:OUT_DIR = (Resolve-Path "dist").Path
-          $env:WIX = "C:\Program Files (x86)\WiX Toolset v3.14"
+          if (-not $env:WIX -or -not (Test-Path "$env:WIX\bin\candle.exe")) {
+            $found = Get-ChildItem "C:\Program Files (x86)" -Directory -Filter "WiX Toolset*" -ErrorAction SilentlyContinue |
+              Select-Object -First 1
+            if ($found) { $env:WIX = $found.FullName }
+          }
+          Write-Host "Using WIX=$env:WIX"
           & .\packaging\windows\build-msi.ps1
           $ver = $Version.TrimStart('v')
           $msi = "dist/fidel-amharic-$ver-windows-x86_64.msi"
