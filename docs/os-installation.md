@@ -16,7 +16,16 @@ Download builds from the [GitHub Releases](https://github.com/fidel-amharic/fide
 
 ### Click install (.deb)
 ```bash
-sudo dpkg -i fidel-amharic_*_amd64.deb
+# Copy out of ~/Downloads so apt's _apt user can read the file (avoids a scary Permission denied notice)
+cp ~/Downloads/fidel-amharic_*_amd64.deb /tmp/
+sudo apt install /tmp/fidel-amharic_*_amd64.deb
+# or: sudo dpkg -i /tmp/fidel-amharic_*_amd64.deb
+```
+
+If a previous install got stuck ("Setting up..." forever), run:
+```bash
+sudo ~/Downloads/fix-fidel-install.sh
+# or download the script from the repo packaging/linux/fix-half-configured.sh
 ```
 
 ### Portable tarball (no root)

@@ -69,17 +69,11 @@ EOF
 cat > "${PKG_DIR}/DEBIAN/postinst" <<'EOF'
 #!/bin/sh
 set -e
-# Never run 'ibus restart' here as root — it blocks forever on session D-Bus.
-# Cache refresh is best-effort and time-bounded.
-if command -v ibus >/dev/null 2>&1; then
-    if command -v timeout >/dev/null 2>&1; then
-        timeout 3s ibus write-cache --system >/dev/null 2>&1 || true
-    else
-        ibus write-cache --system >/dev/null 2>&1 || true
-    fi
-fi
-echo "Fidel Amharic installed. Enable it in Settings → Keyboard → Input Sources."
-echo "If already logged in, run: ibus restart"
+# Intentionally do not invoke ibus/fcitx here.
+# Running them as root from dpkg hangs apt (no user session D-Bus).
+echo "Fidel Amharic installed."
+echo "Enable: Settings → Keyboard → Input Sources → + → Amharic (Fidel Amharic)"
+echo "Then as your user: ibus write-cache; ibus restart"
 exit 0
 EOF
 chmod 755 "${PKG_DIR}/DEBIAN/postinst"
