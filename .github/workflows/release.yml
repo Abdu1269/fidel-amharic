@@ -1,0 +1,269 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g. v0.1.0)'
+        required: true
+        default: 'v0.1.0'
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  # ─────────────────────────────────────────────────
+  # Linux x86_64: IBus engine binary + tarball
+  # ─────────────────────────────────────────────────
+  build-linux:
+    name: Build Linux (IBus)
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache Cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: linux-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Run tests
+        run: cargo test
+
+      - name: Build release binary
+        run: cargo build --release --package linux-ibus
+
+      - name: Strip binary
+        run: strip target/release/linux-ibus
+
+      - name: Package tarball
+        run: |
+          VERSION="${{ github.ref_name }}"
+          [ "$VERSION" = "" ] && VERSION="${{ github.event.inputs.version }}"
+          PKGNAME="fidel-amharic-${VERSION}-linux-x86_64"
+          mkdir -p "dist/${PKGNAME}"
+          cp target/release/linux-ibus               "dist/${PKGNAME}/ibus-engine-fidel-amharic"
+          cp platform/linux-ibus/data/fidel-amharic.xml "dist/${PKGNAME}/"
+          cp profiles/power_geez_phonetic_unicode.toml  "dist/${PKGNAME}/"
+          cp packaging/linux/install.sh              "dist/${PKGNAME}/"
+          cp README.md LICENSE                       "dist/${PKGNAME}/"
+          tar -czf "dist/${PKGNAME}.tar.gz" -C dist "${PKGNAME}"
+          sha256sum "dist/${PKGNAME}.tar.gz" > "dist/${PKGNAME}.tar.gz.sha256"
+          echo "ASSET=dist/${PKGNAME}.tar.gz" >> $GITHUB_ENV
+          echo "ASSET_SHA=dist/${PKGNAME}.tar.gz.sha256" >> $GITHUB_ENV
+
+      - name: Upload Linux artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-x86_64
+          path: dist/
+
+  # ─────────────────────────────────────────────────
+  # Windows x86_64: TSF DLL (cross-compiled via mingw)
+  # ─────────────────────────────────────────────────
+  build-windows:
+    name: Build Windows (TSF DLL)
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust stable + mingw target
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-gnu
+
+      - name: Install mingw cross-compiler
+        run: sudo apt-get install -y gcc-mingw-w64-x86-64
+
+      - name: Cache Cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: windows-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Build Windows TSF DLL
+        run: cargo build --release --package windows-tsf --target x86_64-pc-windows-gnu
+
+      - name: Package Windows zip
+        run: |
+          VERSION="${{ github.ref_name }}"
+          [ "$VERSION" = "" ] && VERSION="${{ github.event.inputs.version }}"
+          PKGNAME="fidel-amharic-${VERSION}-windows-x86_64"
+          mkdir -p "dist/${PKGNAME}"
+          cp target/x86_64-pc-windows-gnu/release/fidel_amharic.dll "dist/${PKGNAME}/"
+          cp packaging/windows/install.ps1   "dist/${PKGNAME}/"
+          cp packaging/windows/uninstall.ps1 "dist/${PKGNAME}/"
+          cp README.md LICENSE               "dist/${PKGNAME}/"
+          cd dist && zip -r "${PKGNAME}.zip" "${PKGNAME}/"
+          sha256sum "${PKGNAME}.zip" > "${PKGNAME}.zip.sha256"
+
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-x86_64
+          path: dist/
+
+  # ─────────────────────────────────────────────────
+  # macOS arm64: Static library + Swift bundle sources
+  # ─────────────────────────────────────────────────
+  build-macos:
+    name: Build macOS (InputMethodKit)
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust stable + Apple targets
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-darwin,x86_64-apple-darwin
+
+      - name: Cache Cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: macos-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Build Apple Silicon static library
+        run: cargo build --release --package fidel-protocol --target aarch64-apple-darwin
+
+      - name: Build Intel static library
+        run: cargo build --release --package fidel-protocol --target x86_64-apple-darwin
+
+      - name: Lipo universal static library
+        run: |
+          lipo -create \
+            target/aarch64-apple-darwin/release/libfidel_protocol.a \
+            target/x86_64-apple-darwin/release/libfidel_protocol.a \
+            -output target/libfidel_protocol_universal.a
+
+      - name: Build & package FidelAmharic.app
+        run: |
+          bash platform/macos-imk/build.sh
+
+      - name: Create macOS tarball
+        run: |
+          VERSION="${{ github.ref_name }}"
+          [ "$VERSION" = "" ] && VERSION="${{ github.event.inputs.version }}"
+          PKGNAME="fidel-amharic-${VERSION}-macos-universal"
+          mkdir -p "dist/${PKGNAME}"
+          cp -R target/macos/FidelAmharic.app "dist/${PKGNAME}/"
+          cp packaging/macos/install.sh       "dist/${PKGNAME}/"
+          cp README.md LICENSE                "dist/${PKGNAME}/"
+          tar -czf "dist/${PKGNAME}.tar.gz" -C dist "${PKGNAME}"
+          shasum -a 256 "dist/${PKGNAME}.tar.gz" > "dist/${PKGNAME}.tar.gz.sha256"
+
+      - name: Upload macOS artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-universal
+          path: dist/
+
+  # ─────────────────────────────────────────────────
+  # GitHub Release: collect all artifacts and publish
+  # ─────────────────────────────────────────────────
+  release:
+    name: Publish GitHub Release
+    needs: [build-linux, build-windows, build-macos]
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist/
+
+      - name: Determine version
+        run: |
+          VERSION="${{ github.ref_name }}"
+          [ "$VERSION" = "" ] && VERSION="${{ github.event.inputs.version }}"
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.VERSION }}
+          name: "Fidel Amharic ${{ env.VERSION }}"
+          draft: false
+          prerelease: ${{ contains(env.VERSION, 'alpha') || contains(env.VERSION, 'beta') || contains(env.VERSION, 'rc') }}
+          body: |
+            ## Fidel Amharic ${{ env.VERSION }} — Native Unicode Amharic IME
+
+            A native system-wide Unicode Ethiopic Input Method Editor (IME) for Linux, Windows, and macOS.
+            Power Geez phonetic compatible. Zero clipboard hacks. Fully offline.
+
+            ---
+
+            ### 📦 Downloads
+
+            | Platform | File | Notes |
+            |---|---|---|
+            | **Linux x86_64** | `fidel-amharic-*-linux-x86_64.tar.gz` | IBus + Fcitx5 (via IBus bridge) |
+            | **Windows x86_64** | `fidel-amharic-*-windows-x86_64.zip` | TSF DLL, run `install.ps1` as Admin |
+            | **macOS Universal** | `fidel-amharic-*-macos-universal.tar.gz` | Apple Silicon + Intel |
+
+            ---
+
+            ### 🚀 Quick Start — Linux
+
+            ```bash
+            tar xzf fidel-amharic-*-linux-x86_64.tar.gz
+            cd fidel-amharic-*-linux-x86_64
+            ./install.sh --user     # no root needed
+            ```
+            Then: **Settings → Keyboard → Input Sources → + → Amharic (Fidel Amharic)**
+
+            ### 🚀 Quick Start — Windows
+
+            1. Extract zip, right-click `install.ps1` → **Run with PowerShell as Administrator**
+            2. Switch input with **Win + Space**
+
+            ### 🚀 Quick Start — macOS
+
+            ```bash
+            tar xzf fidel-amharic-*-macos-universal.tar.gz
+            cd fidel-amharic-*-macos-universal
+            ./install.sh
+            ```
+            Then: **System Settings → Keyboard → Text Input → Edit → + → Amharic → Fidel Amharic**
+
+            ---
+
+            ### ⌨️ Typing (Power Geez Phonetic)
+
+            | Type | Output | | Type | Output |
+            |---|---|---|---|---|
+            | `se` | ሰ | | `sha` | ሻ |
+            | `le` | ለ | | `che` | ቸ |
+            | `me` | መ | | `nyi` | ኚ |
+            | `ha` | ሃ | | `::` | ። |
+            | `be` | በ | | `:` | ፡ |
+
+            See full Power Geez cheat sheet in [README](README.md).
+
+            ---
+
+            ### Checksums
+            Verify downloads with the accompanying `.sha256` files.
+          files: |
+            dist/**/*.tar.gz
+            dist/**/*.tar.gz.sha256
+            dist/**/*.zip
+            dist/**/*.zip.sha256
