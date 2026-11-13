@@ -10,6 +10,7 @@
         <Package InstallerVersion="300"
                  Compressed="yes"
                  InstallScope="perMachine"
+                 Platform="x64"
                  Description="Fidel Amharic Native System-Wide Input Method Editor"
                  Comments="Native TSF Text Service with Power Geez Phonetic compatibility." />
 

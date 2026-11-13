@@ -136,6 +136,7 @@ jobs:
     name: Package Windows MSI
     needs: [build-windows]
     runs-on: windows-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
 
@@ -257,6 +258,11 @@ jobs:
   release:
     name: Publish GitHub Release
     needs: [build-linux, build-windows, package-windows-msi, build-macos]
+    if: |
+      always() &&
+      needs.build-linux.result == 'success' &&
+      needs.build-windows.result == 'success' &&
+      needs.build-macos.result == 'success'
     runs-on: ubuntu-22.04
     permissions:
       contents: write
