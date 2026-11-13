@@ -6,6 +6,15 @@ members = [
     "crates/fidel-protocol",
     "crates/fidel-diagnostics",
     "platform/linux-ibus",
+    "platform/windows-tsf",
+    "apps/settings-tauri/src-tauri",
+]
+default-members = [
+    "crates/fidel-core",
+    "crates/fidel-engine",
+    "crates/fidel-protocol",
+    "crates/fidel-diagnostics",
+    "platform/linux-ibus",
 ]
 
 [workspace.package]

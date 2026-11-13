@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="*"
+             Name="Fidel Amharic Native IME"
+             Language="1033"
+             Version="0.1.0"
+             Manufacturer="Fidel Amharic Project"
+             UpgradeCode="874a9db4-a952-4fe7-b715-68fe4112e340">
+
+        <Package InstallerVersion="300"
+                 Compressed="yes"
+                 InstallScope="perMachine"
+                 Description="Fidel Amharic Native System-Wide Input Method Editor"
+                 Comments="Native TSF Text Service with Power Geez Phonetic compatibility." />
+
+        <MajorUpgrade DowngradeErrorMessage="A newer version of Fidel Amharic is already installed." />
+        <MediaTemplate EmbedCab="yes" />
+
+        <Feature Id="ProductFeature" Title="Fidel Amharic IME" Level="1">
+            <ComponentGroupRef Id="ProductComponents" />
+        </Feature>
+
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFiles64Folder">
+                <Directory Id="INSTALLFOLDER" Name="Fidel Amharic" />
+            </Directory>
+        </Directory>
+
+        <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+            <!-- TSF Text Service DLL -->
+            <Component Id="FidelTsfDll" Guid="0b6f932e-4b68-4a92-bf3b-9e4a3c108c9d" Win64="yes">
+                <File Id="FidelDllFile"
+                      Source="$(var.CargoTargetDir)\release\fidel_amharic.dll"
+                      KeyPath="yes"
+                      SelfRegCost="1" />
+            </Component>
+        </ComponentGroup>
+
+        <!-- Execute regsvr32 on Install / Uninstall -->
+        <CustomAction Id="RegisterServer"
+                      Directory="INSTALLFOLDER"
+                      ExeCommand='[SystemFolder]regsvr32.exe /s "[INSTALLFOLDER]fidel_amharic.dll"'
+                      Execute="deferred"
+                      Return="check"
+                      Impersonate="no" />
+
+        <CustomAction Id="UnregisterServer"
+                      Directory="INSTALLFOLDER"
+                      ExeCommand='[SystemFolder]regsvr32.exe /u /s "[INSTALLFOLDER]fidel_amharic.dll"'
+                      Execute="deferred"
+                      Return="ignore"
+                      Impersonate="no" />
+
+        <InstallExecuteSequence>
+            <Custom Action="UnregisterServer" Before="RemoveFiles">Installed AND (REMOVE="ALL")</Custom>
+            <Custom Action="RegisterServer" After="InstallFiles">NOT Installed OR REINSTALL</Custom>
+        </InstallExecuteSequence>
+    </Product>
+</Wix>

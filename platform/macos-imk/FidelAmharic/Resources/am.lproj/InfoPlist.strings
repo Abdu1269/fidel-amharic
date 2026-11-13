@@ -1,0 +1,4 @@
+/* Amharic Localized Strings */
+CFBundleDisplayName = "ፊደል አማርኛ";
+CFBundleName = "FidelAmharic";
+com.fidel.inputmethod.Amharic.PowerGeez = "አማርኛ (ፓወር ግዕዝ)";

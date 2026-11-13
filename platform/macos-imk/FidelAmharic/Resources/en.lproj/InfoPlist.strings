@@ -1,0 +1,4 @@
+/* English Localized Strings */
+CFBundleDisplayName = "Fidel Amharic";
+CFBundleName = "FidelAmharic";
+com.fidel.inputmethod.Amharic.PowerGeez = "Amharic (Power Geez)";

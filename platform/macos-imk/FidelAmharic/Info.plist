@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleExecutable</key>
+    <string>FidelAmharic</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.fidel.inputmethod.Amharic</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>FidelAmharic</string>
+    <key>CFBundleDisplayName</key>
+    <string>Fidel Amharic</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>0.1.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>CFBundleIconFile</key>
+    <string>icon</string>
+
+    <!-- Background UI Element without Dock icon -->
+    <key>LSUIElement</key>
+    <true/>
+    <key>LSBackgroundOnly</key>
+    <false/>
+
+    <!-- InputMethodKit Configuration -->
+    <key>InputMethodConnectionName</key>
+    <string>FidelAmharic_1_Connection</string>
+    <key>InputMethodServerControllerClass</key>
+    <string>FidelAmharic.FidelInputController</string>
+    <key>InputMethodServerDelegateClass</key>
+    <string>FidelAmharic.FidelServerDelegate</string>
+
+    <!-- Ethiopic Character Repertoire & Scripts -->
+    <key>tsInputMethodCharacterRepertoireKey</key>
+    <array>
+        <string>Ethi</string>
+    </array>
+    <key>tsInputMethodIconFileKey</key>
+    <string>icon.icns</string>
+
+    <key>ComponentInputModeDict</key>
+    <dict>
+        <key>tsInputModeListKey</key>
+        <dict>
+            <key>com.fidel.inputmethod.Amharic.PowerGeez</key>
+            <dict>
+                <key>tsInputModeIsVisibleKey</key>
+                <true/>
+                <key>tsInputModeMenuIconFileKey</key>
+                <string>icon.icns</string>
+                <key>tsInputModePaletteIconFileKey</key>
+                <string>icon.icns</string>
+                <key>tsInputModePrimaryInScriptKey</key>
+                <true/>
+                <key>tsInputModeScriptKey</key>
+                <string>smEthiopic</string>
+            </dict>
+        </dict>
+    </dict>
+
+    <!-- Sandbox and Security Restrictions -->
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+</dict>
+</plist>
