@@ -69,12 +69,11 @@ EOF
 cat > "${PKG_DIR}/DEBIAN/postinst" <<'EOF'
 #!/bin/sh
 set -e
+# Note: Never run 'ibus restart' in postinst as root; ibus-daemon is a per-user
+# session service and running it as root hangs waiting for a session D-Bus.
+# Update system cache non-blockingly:
 if command -v ibus >/dev/null 2>&1; then
-    ibus write-cache >/dev/null 2>&1 || true
-    ibus restart >/dev/null 2>&1 || true
-fi
-if command -v fcitx5-remote >/dev/null 2>&1; then
-    fcitx5-remote -r >/dev/null 2>&1 || true
+    ibus write-cache --system 2>/dev/null || true
 fi
 exit 0
 EOF
